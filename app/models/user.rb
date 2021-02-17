@@ -7,8 +7,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
 
-  has_many :projects
-  has_many :notes
+  has_many :projects, dependent: :destroy
+  has_many :notes, dependent: :destroy
 
   before_save :ensure_authentication_token
   after_create :send_welcome_email
